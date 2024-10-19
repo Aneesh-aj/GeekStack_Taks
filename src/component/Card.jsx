@@ -8,7 +8,7 @@ const Card = ({ restaurant }) => {
         <>
             <div className="w-full flex flex-col gap-4">
                 {
-                    restaurant.length > 0 ? restaurant.map((ele) => {
+                   restaurant&&restaurant.length > 0 ? restaurant.map((ele) => {
                         return (
                             <div className="w-full h-[12rem] bg-[#1f1f1f] p-2 rounded-lg flex">
                                 <div className=" w-[30%] lg:w-[20%] h-full p-2">
