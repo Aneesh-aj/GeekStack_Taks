@@ -17,6 +17,7 @@ export async function getNearbyRestaurants() {
   try {
     const location = await getCurrentLocation();
     
+    console.log(location)
 
     if (location) {
       const response = await GoogleMapsApi.get("", {
