@@ -5,7 +5,7 @@ const api_key = import.meta.env.VITE_API_KEY
 
 
 
-const baseURL = isDevelopment ? "/api/maps/place/nearbysearch/json" : "https://maps.googleapis.com/maps/api/place/nearbysearch/json"
+const baseURL = "/api/maps/place/nearbysearch/json"
 const GoogleMapsApi = axios.create({
   baseURL,
   headers: {
