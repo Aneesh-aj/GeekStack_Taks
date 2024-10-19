@@ -5,6 +5,8 @@ export default async function handler(req, res) {
   const api_key = process.env.VITE_API_KEY;
 
   try {
+
+    console.log("serverless")
     const response = await axios.get(
       "https://maps.googleapis.com/maps/api/place/nearbysearch/json",
       {
@@ -16,6 +18,9 @@ export default async function handler(req, res) {
         },
       }
     );
+
+
+    console.log(" jtjjt",response)
 
     // Send the results back to the client
     res.status(200).json(response.data.results);
