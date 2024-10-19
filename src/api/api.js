@@ -7,7 +7,7 @@ export async function getNearbyRestaurants() {
     const location = await getCurrentLocation();
            console.log(location)
     if (location) {
-        const response = await axios.get(`/api/getNearbyRestaurants`, {
+        const response = await axios.get(`/getNearbyRestaurants`, {
         params: {
           latitude: location.latitude,
           longitude: location.longitude,
