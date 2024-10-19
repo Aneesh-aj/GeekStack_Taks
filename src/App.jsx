@@ -7,7 +7,6 @@ import Nav from './component/Nav'
 import Content from './component/Content'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>

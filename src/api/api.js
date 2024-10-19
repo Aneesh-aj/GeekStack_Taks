@@ -13,7 +13,9 @@ const GoogleMapsApi = axios.create({
 
 export async function getNearbyRestaurants() {
   try {
+    console.log(" not comiing")
     const location = await getCurrentLocation();
+
 
     const response = await GoogleMapsApi.get("/api/maps/place/nearbysearch/json", {
         params: {
@@ -23,6 +25,7 @@ export async function getNearbyRestaurants() {
           key: api_key,
         },
       });
+      consolelog(' resss 1',response)
           
     return response.data.results;
 

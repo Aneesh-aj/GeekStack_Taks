@@ -33,7 +33,7 @@ const Content = () => {
             <div className="bg-[#131314] w-full h-[80%] flex flex-col justify-center items-center">
                 <Toaster/>
                 <div className="w-[90%] lg:w-[50%] h-full">
-                    {restaurant.length>0 ?<ResponseConsole submitText={submitText} restaurant={restaurant} />:<LandingText /> }
+                    {restaurant&&restaurant.length>0 ?<ResponseConsole submitText={submitText} restaurant={restaurant} />:<LandingText /> }
                 </div>
                 <div className="w-[90%] lg:w-[50%] fixed bottom-8 bg-[#1f1f1f] p-3 h-[3rem] lg:h-[4rem] rounded-full">
                     <input
