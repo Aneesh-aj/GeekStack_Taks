@@ -5,15 +5,16 @@ import axios from "axios";
 export async function getNearbyRestaurants() {
   try {
     const location = await getCurrentLocation();
-
+           console.log(location)
     if (location) {
-      // Invoke the serverless function
-      const response = await axios.get(`/api/getNearbyRestaurants`, {
+        const response = await axios.get(`/api/getNearbyRestaurants`, {
         params: {
           latitude: location.latitude,
           longitude: location.longitude,
         },
       });
+
+       console.log(" eee ",response)
 
       return response.data; // Return the data received from the serverless function
     } else {
