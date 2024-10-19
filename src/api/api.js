@@ -15,19 +15,23 @@ export async function getNearbyRestaurants() {
   try {
     console.log(" not comiing")
     const location = await getCurrentLocation();
-
-
-    const response = await GoogleMapsApi.get("/api/maps/place/nearbysearch/json", {
-        params: {
-          location: `${location.latitude},${location.longitude}`,
-          radius: 1000, 
-          type: "restaurant", 
-          key: api_key,
-        },
-      });
-      console.log(' resss 1',response)
-          
-    return response.data.results;
+   
+    if(location){
+      const response = await GoogleMapsApi.get("/api/maps/place/nearbysearch/json", {
+          params: {
+            location: `${location.latitude},${location.longitude}`,
+            radius: 1000, 
+            type: "restaurant", 
+            key: api_key,
+          },
+        });
+        console.log(' resss 1',response.data)
+            
+      return response.data.results;
+    }else{
+       return "There is a Issue with location !! close the tab and reuse it again"
+    }
+   
 
   } catch (error) {
     console.error("Error fetching nearby restaurants:", error);

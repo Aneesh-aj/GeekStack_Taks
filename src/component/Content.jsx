@@ -11,7 +11,9 @@ const Content = () => {
 
    const handleKeyDown = async (e) => {
        if (e.key === 'Enter') { 
-        const value = input.toLocaleLowerCase()        
+        const value = input.toLocaleLowerCase()  
+        console.log(" input ",input)
+        console.log(" value ",value)      
         if (value !== 'restaurant near me') {
             return toast.error('Wrong command! Only type: "restaurant near me"');
         }
