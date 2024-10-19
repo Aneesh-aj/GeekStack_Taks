@@ -1,34 +1,21 @@
+// utils/api.js (or wherever you manage API calls)
+
 import axios from "axios";
-
-const isDevelopment = import.meta.env.DEV;
-const api_key = import.meta.env.VITE_API_KEY;
-
-const baseURL = isDevelopment ? "/api/maps/place/nearbysearch/json" : "https://maps.googleapis.com/maps/api/place/nearbysearch/json";
-
-const GoogleMapsApi = axios.create({
-  baseURL,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
 
 export async function getNearbyRestaurants() {
   try {
     const location = await getCurrentLocation();
-    
 
     if (location) {
-      const response = await GoogleMapsApi.get("", {
+      // Invoke the serverless function
+      const response = await axios.get(`/api/getNearbyRestaurants`, {
         params: {
-          location: `${location.latitude},${location.longitude}`,
-          radius:1000,
-          type: "restaurant",
-          key:api_key
+          latitude: location.latitude,
+          longitude: location.longitude,
         },
       });
 
-      console.log("Response:", response);
-      return response.data.results; // Return the data received from the serverless function
+      return response.data; // Return the data received from the serverless function
     } else {
       return "There is an issue with the location! Close the tab and try again.";
     }
