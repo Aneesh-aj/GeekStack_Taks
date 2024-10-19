@@ -3,6 +3,9 @@
 import axios from "axios";
 
 export default async function handler(req, res) {
+
+    console.log(" enteer zzzzzz");
+    
   // Get latitude and longitude from query parameters
   const { latitude, longitude } = req.query; 
   const apiKey = process.env.VITE_API_KEY; // Ensure this is set in Vercel environment variables
@@ -21,6 +24,8 @@ export default async function handler(req, res) {
         key: apiKey,
       },
     });
+    console.log(response);
+    
 
     // Return the results back to the client
     return res.status(200).json(response.data.results);
