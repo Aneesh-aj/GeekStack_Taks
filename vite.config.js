@@ -19,6 +19,9 @@ export default defineConfig({
         target: 'https://maps.googleapis.com',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api\/maps/, '/maps/api'),
+        onProxyReq: (proxyReq) => {
+          proxyReq.setHeader('Access-Control-Allow-Origin', '*');
+        },
       },
     },
   },
