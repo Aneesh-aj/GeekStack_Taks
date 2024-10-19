@@ -25,7 +25,7 @@ export async function getNearbyRestaurants() {
           key: api_key,
         },
       });
-      consolelog(' resss 1',response)
+      console.log(' resss 1',response)
           
     return response.data.results;
 
