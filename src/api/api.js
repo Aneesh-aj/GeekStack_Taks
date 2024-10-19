@@ -3,8 +3,9 @@ import axios from "axios";
 const isDevelopment = import.meta.env.DEV;
 const api_key = import.meta.env.VITE_API_KEY;
 
-const baseURL = isDevelopment ? "/api/maps/place/nearbysearch/json" : "/api/getNearbyRestaurants";
 
+const baseURL = isDevelopment ? "/api/maps/place/nearbysearch/json" : "/api/getNearbyRestaurants";
+console.log( baseURL)
 const GoogleMapsApi = axios.create({
   baseURL,
   headers: {
