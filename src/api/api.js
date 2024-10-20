@@ -1,10 +1,10 @@
 import axios from "axios";
 
 const api_key = import.meta.env.VITE_API_KEY;
-const isDevelopment = import.meta.env.DEV;
+// const isDevelopment = import.meta.env.DEV;
 
 
-const baseURL = isDevelopment ? "/api/maps/nearbysearch" : "https://geekstack-task-backend.onrender.com";
+const baseURL = "https://geekstack-task-backend.onrender.com";
 
 const BackendApi = axios.create({
   baseURL,
@@ -27,7 +27,7 @@ export async function getNearbyRestaurants() {
         },
       });
 
-      console.log("Response:", response);
+      console.log("Response: ", response);
       return response.data.results;
     } else {
       return "There is an issue with the location! Close the tab and try again.";
