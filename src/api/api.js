@@ -1,22 +1,34 @@
-// utils/api.js (or wherever you manage API calls)
-
 import axios from "axios";
+
+const api_key = import.meta.env.VITE_API_KEY;
+const isDevelopment = import.meta.env.DEV;
+
+
+const baseURL = isDevelopment ? "/api/maps/nearbysearch" : "https://geekstack-task-backend.onrender.com";
+
+const BackendApi = axios.create({
+  baseURL,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 
 export async function getNearbyRestaurants() {
   try {
     const location = await getCurrentLocation();
-           console.log(location)
+
     if (location) {
-        const response = await axios.get(`/api/getNearbyRestaurants`, {
+      const response = await BackendApi.get("", {
         params: {
-          latitude: location.latitude,
-          longitude: location.longitude,
+          location: `${location.latitude},${location.longitude}`, 
+          radius: 1000,
+          type: "restaurant",
+          key: api_key, 
         },
       });
 
-       console.log(" eee ",response)
-
-      return response.data; // Return the data received from the serverless function
+      console.log("Response:", response);
+      return response.data.results;
     } else {
       return "There is an issue with the location! Close the tab and try again.";
     }
