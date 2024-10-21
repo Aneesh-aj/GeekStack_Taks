@@ -5,6 +5,7 @@ const api_key = import.meta.env.VITE_API_KEY;
 
 
 const baseURL = "https://geekstack-task-backend.onrender.com";
+// const baseURL = "http://localhost:3000"
 
 const BackendApi = axios.create({
   baseURL,
@@ -20,15 +21,13 @@ export async function getNearbyRestaurants() {
     if (location) {
       const response = await BackendApi.get("", {
         params: {
-          location: `${location.latitude},${location.longitude}`, 
-          radius: 1000,
-          type: "restaurant",
-          key: api_key, 
+          latitude:location.latitude,
+          longitude:location.longitude,
         },
       });
 
       console.log("Response: ", response);
-      return response.data.results;
+      return response.data
     } else {
       return "There is an issue with the location! Close the tab and try again.";
     }

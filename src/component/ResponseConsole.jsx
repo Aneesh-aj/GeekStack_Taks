@@ -1,8 +1,11 @@
 import React from "react"
 import Card from "./Card"
-const ResponseConsole = ({submitText,restaurant}) => {
+import SkeletonLoading from "./SkeletonLoading"
+const ResponseConsole = ({loading,submitText,restaurant}) => {
     return (
         <>
+        {
+            loading ? <SkeletonLoading/>:
             <div className=" h-[560px] w-full  overflow-y-scroll scrollbar-hide pb-[4rem]  ">
                 <div className="">
                     <h5 className="text-white">{submitText}</h5>
@@ -10,9 +13,11 @@ const ResponseConsole = ({submitText,restaurant}) => {
                         <div className="h-full w-6 bg-slate-300 rounded-full"></div>
                         <p className="text-white">Showing the result for your query</p>
                     </div>
+
                     <Card restaurant={restaurant} />
                 </div>
             </div>
+            }
         </>
     )
 }

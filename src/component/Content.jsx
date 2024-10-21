@@ -3,11 +3,13 @@ import React, { useState } from "react";
 import ResponseConsole from "./ResponseConsole";
 import {  getNearbyRestaurants} from "../api/api";
 import toast, { Toaster } from "react-hot-toast";
+import SkeletonLoading from "./SkeletonLoading";
 
 const Content = () => {
    const [input, setInput] = useState("");
    const [submitText,setSubmitText]=useState("")
    const [restaurant,setRestaurant]=useState([])
+   const [loading,setLoading]=useState(false)
 
    const handleKeyDown = async (e) => {
        if (e.key === 'Enter') { 
@@ -19,9 +21,14 @@ const Content = () => {
         }
 
            try {
+            setLoading(true)
                const response = await getNearbyRestaurants(input);  
+               await new Promise((resolve) => setTimeout(resolve, 2000));
+
                setSubmitText(input)
                setInput("")
+               setLoading(false)
+
                setRestaurant(response)
            } catch (error) {
                console.error("Error:", error);
@@ -35,7 +42,7 @@ const Content = () => {
             <div className="bg-[#131314] w-full h-[80%] flex flex-col justify-center items-center">
                 <Toaster/>
                 <div className="w-[90%] lg:w-[50%] h-full">
-                    {restaurant&&restaurant.length>0 ?<ResponseConsole submitText={submitText} restaurant={restaurant} />:<LandingText /> }
+                    {restaurant&&restaurant.length>0  || loading?<ResponseConsole loading={loading} submitText={submitText} restaurant={restaurant} />:<LandingText /> }
                 </div>
                 <div className="w-[90%] lg:w-[50%] fixed bottom-8 bg-[#1f1f1f] p-3 h-[3rem] lg:h-[4rem] rounded-full">
                     <input
